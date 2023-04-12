@@ -1,8 +1,13 @@
 import React from "react";
 import "./Card.css";
 
-function Card({ data, onRecipeClick }) {
+function Card({ data, onRecipeClick, onAddToBookmarks }) {
   const { idMeal, strMeal, strMealThumb } = data;
+
+  const handleAddClick = (event) => {
+    event.stopPropagation();
+    onAddToBookmarks(data);
+  };
 
   return (
     <div className="Card">
@@ -18,9 +23,12 @@ function Card({ data, onRecipeClick }) {
           >
             View Recipe
           </button>
-          <a className="btn btn-secondary" href={`/recipe/${idMeal}`}>
-            View Recipe (Link)
-          </a>
+          <button
+            className="btn btn-secondary"
+            onClick={handleAddClick}
+          >
+            Add to Bookmarks
+          </button>
         </div>
       </div>
     </div>

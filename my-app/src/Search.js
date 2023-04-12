@@ -3,10 +3,11 @@ import Card from "./Card";
 import Recipe from "./Recipe";
 import "./Search.css";
 
-function Search() {
+function Search({ onAddToBookmarks }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -21,12 +22,17 @@ function Search() {
   };
 
   const handleRecipeClick = (recipe) => {
+    console.log(recipe);
     setSelectedRecipe(recipe);
   };
 
   const handleBackClick = () => {
     setSelectedRecipe(null);
   };
+
+  const handleAddToBookmarks = (recipe) => {
+    onAddToBookmarks(recipe);
+  }
 
   return (
     <div className="Search container">
@@ -52,12 +58,12 @@ function Search() {
         </div>
       </div>
       {selectedRecipe ? (
-        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} />
+        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} onAddToBookmarks={handleAddToBookmarks}/>
       ) : (
         <div className="row">
           {searchResults.map((result) => (
             <div key={result.idMeal} className="col-md-4 mb-4">
-              <Card data={result} onRecipeClick={handleRecipeClick} />
+              <Card data={result} onRecipeClick={handleRecipeClick} onAddToBookmarks={handleAddToBookmarks} />
             </div>
           ))}
         </div>
