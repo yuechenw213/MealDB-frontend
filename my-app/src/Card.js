@@ -1,20 +1,27 @@
 import React from "react";
 import "./Card.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-function Card({ data }) {
+function Card({ data, onRecipeClick }) {
   const { idMeal, strMeal, strMealThumb } = data;
 
   return (
-    <div className="card mb-4" key={idMeal}>
-      <img
-        className="card-img-top"
-        src={strMealThumb}
-        alt={strMeal}
-        style={{ height: "200px", objectFit: "cover" }}
-      />
-      <div className="card-body">
-        <h5 className="card-title">{strMeal}</h5>
+    <div className="Card">
+      <div className="Card-image">
+        <img src={strMealThumb} alt={strMeal} />
+      </div>
+      <div className="Card-content">
+        <h3 className="Card-title">{strMeal}</h3>
+        <div className="Card-actions">
+          <button
+            className="btn btn-primary"
+            onClick={() => onRecipeClick(data)}
+          >
+            View Recipe
+          </button>
+          <a className="btn btn-secondary" href={`/recipe/${idMeal}`}>
+            View Recipe (Link)
+          </a>
+        </div>
       </div>
     </div>
   );

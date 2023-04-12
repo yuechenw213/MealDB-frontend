@@ -1,0 +1,30 @@
+/* Import Bootstrap styles */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/* Custom styles */
+body {
+  padding-top: 5rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.search-input {
+  max-width: 50%;
+}
+
+.search-button {
+  margin-left: 1rem;
+  border-radius: 1rem;
+}
