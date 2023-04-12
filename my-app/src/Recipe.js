@@ -6,6 +6,11 @@ function Recipe(props) {
   const [recipe, setRecipe] = useState(props.recipe);
 
 
+  const handleAddClick = (event) => {
+    event.stopPropagation();
+    props.onAddToBookmarks(recipe);
+  };
+
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     if (recipe[`strIngredient${i}`]) {
@@ -25,12 +30,11 @@ function Recipe(props) {
         <div className="col-md-12">
           <h1 className="Recipe-title text-center">{recipe.strMeal}</h1>
           <img src={recipe.strMealThumb} alt={recipe.strMeal} className="Recipe-image img-fluid rounded mx-auto d-block" />
-          
-
-          <button className="btn btn-primary" onClick={props.onAddToBookmarks}>
-            Add to Bookmarks
-          </button>
-          
+          <div>
+            <button className="btn btn-primary" onClick={handleAddClick}>
+              Add to Bookmarks
+            </button>
+          </div>
           <div className="Recipe-details mt-4">
             <h2>Ingredients</h2>
             <ul className="list-group">{ingredients}</ul>

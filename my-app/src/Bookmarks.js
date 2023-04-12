@@ -5,9 +5,6 @@ import Card from "./Card";
 function Bookmarks({ bookmarks ,onRecipeClick}) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-
- 
-
   return (
     <div className="Bookmarks container">
       <h1 className="text-center mb-5">Bookmarked Recipes</h1>
