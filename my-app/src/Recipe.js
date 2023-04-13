@@ -11,6 +11,8 @@ function Recipe(props) {
     props.onAddToBookmarks(recipe);
   };
 
+  const isBookmarked = props.bookmarks.some((b) => b.idMeal === recipe.idMeal);
+
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     if (recipe[`strIngredient${i}`]) {
@@ -31,9 +33,15 @@ function Recipe(props) {
           <h1 className="Recipe-title text-center">{recipe.strMeal}</h1>
           <img src={recipe.strMealThumb} alt={recipe.strMeal} className="Recipe-image img-fluid rounded mx-auto d-block" />
           <div>
-            <button className="btn btn-primary" onClick={handleAddClick}>
+          {!isBookmarked ? (
+            <button className="btn btn-secondary" onClick={handleAddClick}>
               Add to Bookmarks
             </button>
+          ) : (
+            <button className="btn btn-warning" onClick={handleAddClick}>
+              Remove from Bookmarks
+            </button>
+          )}
           </div>
           <div className="Recipe-details mt-4">
             <h2>Ingredients</h2>

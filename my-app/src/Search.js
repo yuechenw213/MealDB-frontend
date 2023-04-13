@@ -3,7 +3,7 @@ import Card from "./Card";
 import Recipe from "./Recipe";
 import "./Search.css";
 
-function Search({ onAddToBookmarks }) {
+function Search({ onAddToBookmarks, bookmarks }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -58,12 +58,12 @@ function Search({ onAddToBookmarks }) {
         </div>
       </div>
       {selectedRecipe ? (
-        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} onAddToBookmarks={handleAddToBookmarks}/>
+        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} onAddToBookmarks={handleAddToBookmarks} bookmarks={bookmarks}/>
       ) : (
         <div className="row">
           {searchResults.map((result) => (
             <div key={result.idMeal} className="col-md-4 mb-4">
-              <Card data={result} onRecipeClick={handleRecipeClick} onAddToBookmarks={handleAddToBookmarks} />
+              <Card data={result} onRecipeClick={handleRecipeClick} onAddToBookmarks={handleAddToBookmarks} bookmarks={bookmarks} />
             </div>
           ))}
         </div>

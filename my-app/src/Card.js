@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState }  from "react";
 import "./Card.css";
 
-function Card({ data, onRecipeClick, onAddToBookmarks }) {
+function Card({ data, onRecipeClick, onAddToBookmarks, bookmarks }) {
   const { idMeal, strMeal, strMealThumb } = data;
 
   const handleAddClick = (event) => {
     event.stopPropagation();
     onAddToBookmarks(data);
   };
+
+
+  const isBookmarked = bookmarks.some((b) => b.idMeal === idMeal);
+
 
   return (
     <div className="Card">
@@ -23,12 +27,15 @@ function Card({ data, onRecipeClick, onAddToBookmarks }) {
           >
             View Recipe
           </button>
-          <button
-            className="btn btn-secondary"
-            onClick={handleAddClick}
-          >
-            Add to Bookmarks
-          </button>
+          {!isBookmarked ? (
+            <button className="btn btn-secondary" onClick={handleAddClick}>
+              Add to Bookmarks
+            </button>
+          ) : (
+            <button className="btn btn-warning" onClick={handleAddClick}>
+              Remove from Bookmarks
+            </button>
+          )}
         </div>
       </div>
     </div>
