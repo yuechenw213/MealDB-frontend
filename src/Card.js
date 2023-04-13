@@ -14,13 +14,13 @@ function Card({ data, onRecipeClick, onAddToBookmarks, bookmarks }) {
 
 
   return (
-    <div className="Card">
+    <div className="card rounded border">
       <div className="Card-image">
         <img src={strMealThumb} alt={strMeal} />
       </div>
       <div className="Card-content">
         <h3 className="Card-title">{strMeal}</h3>
-        <div className="Card-actions">
+        <div className="Card-actions text-center">
           <button
             className="btn btn-primary"
             onClick={() => onRecipeClick(data)}

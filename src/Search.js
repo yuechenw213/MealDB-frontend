@@ -36,7 +36,12 @@ function Search({ onAddToBookmarks, bookmarks }) {
 
   return (
     <div className="Search container">
-      <h1 className="text-center mb-5">Recipe Search</h1>
+      
+      {selectedRecipe ? (
+        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} onAddToBookmarks={handleAddToBookmarks} bookmarks={bookmarks}/>
+      ) : (
+        <div>
+          <h1 className="text-center mb-5">Recipe Search</h1>
       <div className="row mb-5">
         <div className="col-md-8 mx-auto">
           <div className="input-group">
@@ -57,15 +62,14 @@ function Search({ onAddToBookmarks, bookmarks }) {
           </div>
         </div>
       </div>
-      {selectedRecipe ? (
-        <Recipe recipe={selectedRecipe} onBackClick={handleBackClick} onAddToBookmarks={handleAddToBookmarks} bookmarks={bookmarks}/>
-      ) : (
+          <p>{searchResults.length} results</p>
         <div className="row">
           {searchResults.map((result) => (
             <div key={result.idMeal} className="col-md-4 mb-4">
               <Card data={result} onRecipeClick={handleRecipeClick} onAddToBookmarks={handleAddToBookmarks} bookmarks={bookmarks} />
             </div>
           ))}
+        </div>
         </div>
       )}
     </div>
